@@ -2,7 +2,7 @@
 
 namespace Magento;
 use PHPUnit\Framework\TestCase;
-require('MailFormat.php');
+require dirname(dirname(__FILE__)) .'../MailFormatModel.php';
 
 class MailFormatTest extends TestCase
 {

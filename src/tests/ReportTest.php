@@ -2,7 +2,7 @@
 
 namespace Magento;
 use PHPUnit\Framework\TestCase;
-require('Report.php');
+require dirname(dirname(__FILE__)) .'../ReportController.php';
 
 class ReportTest extends TestCase
 {
@@ -10,15 +10,15 @@ class ReportTest extends TestCase
       {
          $report = new Report('', '2021-20-12', 'content');
          $result =  $report->validate();
-         $this->assertFalse($result);
+         $this->assertStringContainsString('title should not be empty', $result);
 
-         $report = new Report('testtitle', '', 'content');
+         $report = new Report('testtitle', 'Invalid date', 'content');
          $result =  $report->validate();
-         $this->assertTrue($result);
+         $this->assertStringContainsString('Invalid date', $result);
 
          $report = new Report('testtitle', '2021-20-12', '');
          $result =  $report->validate();
-         $this->assertFalse($result);
+         $this->assertStringContainsString('content should not be empty', $result);
       }
       
       public function testSendReport()
@@ -35,16 +35,5 @@ class ReportTest extends TestCase
          $result =  $report->sendReport('OTHER');
          $this->assertFalse($result);
 
-         $report = new Report('', '2021-20-12', 'content');
-         $result =  $report->sendReport('HTML');
-         $this->assertFalse($result);
-
-         $report = new Report('title', '', 'content');
-         $result =  $report->sendReport('HTML');
-         $this->assertTrue($result);
-
-         $report = new Report('title', '2021-20-12', '');
-         $result =  $report->sendReport('HTML');
-         $this->assertFalse($result);
       }
 }

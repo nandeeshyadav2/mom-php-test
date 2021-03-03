@@ -4,7 +4,7 @@ namespace Magento;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 require dirname(dirname(__FILE__)) .'\vendor\autoload.php';
-include dirname(dirname(__FILE__)) .'../constants.php';
+require dirname(dirname(__FILE__)) .'../constants.php';
 class Mailer
 {
     public function send($content)
@@ -28,6 +28,6 @@ class Mailer
         $mail->MsgHTML($content);
         $mail->AddAddress(to);
 
-        return !$mail->Send()?false: true;
+        return $mail->Send()?true: false;
     }
 }

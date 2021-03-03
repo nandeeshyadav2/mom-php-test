@@ -2,7 +2,7 @@
 
 namespace Magento;
 use PHPUnit\Framework\TestCase;
-require('Mailer.php');
+require dirname(dirname(__FILE__)) .'../MailerModel.php';
 class MailerTest extends TestCase
 {
       public function testSend()

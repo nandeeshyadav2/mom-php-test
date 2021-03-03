@@ -1,8 +1,8 @@
 <?php
 
 namespace Magento;
-include_once('Mailer.php');
-include_once('MailFormat.php');
+include_once('MailerModel.php');
+include_once('MailFormatModel.php');
 class Report
 {
     private $title;
@@ -14,16 +14,23 @@ class Report
 		$this->date = !$date?(new \DateTime())->format('y-m-d h:i:s'):$date;
         $this->content = $content;
 	}
-
+    // This function is to validate the inputs
     public function validate()
     {
-        if (empty($this->title) || empty($this->date) || empty($this->content)) {
-            return false;
+        if (empty($this->title)) {
+            return 'title should not be empty';
+        }
+        if (empty($this->content)) {
+            return 'content should not be empty';
+        }
+        if (!empty($this->content) && !strtotime($this->date)) {
+            return 'Invalid date';
         }
 
         return true;
     }
 
+    // This function is to sending report to user
     public function sendReport($type)
     {
         if ($this->validate())
