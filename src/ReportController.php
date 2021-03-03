@@ -23,7 +23,7 @@ class Report
         if (empty($this->content)) {
             return 'content should not be empty';
         }
-        if (!empty($this->content) && !strtotime($this->date)) {
+        if (!strtotime($this->date)) {
             return 'Invalid date';
         }
 
