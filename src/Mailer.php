@@ -9,31 +9,24 @@ class Mailer
 {
     public function send($content)
     {
-        // setting phpmailer and some dummy input data
-        $To = to;
-        $Subject = Subject;
-        $Host = Host;
-        $Username = Username;
-        $Password = Password;
-        $Port = Port;
 
         $mail = new PHPMailer();
         $mail->IsSMTP(); // telling the class to use SMTP
-        $mail->Host = $Host; // SMTP server
+        $mail->Host = Host; // SMTP server
         $mail->SMTPDebug = 0; // enables SMTP debug information (for testing)
         // 1 = errors and messages
         // 2 = messages only
         $mail->SMTPAuth = true; // enable SMTP authentication
         //$mail->SMTPSecure = 'ssl'; //or tsl -> switched off
-        $mail->Port = $Port; // set the SMTP port for the service server
-        $mail->Username = $Username; // account username
-        $mail->Password = $Password; // account password
+        $mail->Port = Port; // set the SMTP port for the service server
+        $mail->Username = Username; // account username
+        $mail->Password = Password; // account password
 
-        $mail->SetFrom($Username);
-        $mail->Subject = $Subject;
+        $mail->SetFrom(Username);
+        $mail->Subject = Subject;
         // if(!$content) return false;
         $mail->MsgHTML($content);
-        $mail->AddAddress($To);
+        $mail->AddAddress(to);
 
         return !$mail->Send()?false: true;
     }
