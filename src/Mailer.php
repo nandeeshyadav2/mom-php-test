@@ -4,18 +4,18 @@ namespace Magento;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 require dirname(dirname(__FILE__)) .'\vendor\autoload.php';
-
+require '../constants.php';
 class Mailer
 {
     public function send($content)
     {
         // setting phpmailer and some dummy input data
-        $To = 'nandeeshyadav2@gmail.com';
-        $Subject = 'test';
-        $Host = 'smtp.gmail.com';
-        $Username = 'nandeeshyadav6@gmail.com';
-        $Password = '******';
-        $Port = "587";
+        $To = to;
+        $Subject = Subject;
+        $Host = Host;
+        $Username = Username;
+        $Password = Password;
+        $Port = Port;
 
         $mail = new PHPMailer();
         $mail->IsSMTP(); // telling the class to use SMTP

@@ -28,6 +28,7 @@ class Report
     {
         if ($this->validate())
         {
+            echo $type.' ';
             $mailFormat = '';
             $format = new MailFormat();
             switch($type) {

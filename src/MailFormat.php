@@ -2,6 +2,7 @@
 namespace Magento;
 class MailFormat
 {
+    
 
     public function formatJson($title, $date, $content)
     {

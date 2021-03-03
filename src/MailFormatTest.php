@@ -24,6 +24,7 @@ class MailFormatTest extends TestCase
       }
       public function testReportToArray() 
       {
+          // Take some data then call function then assert the values in response
         $title = 'title';
         $date = '2020-12-20';
         $content = 'somecontent';
